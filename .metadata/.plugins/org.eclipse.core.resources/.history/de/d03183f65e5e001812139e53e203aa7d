@@ -1,0 +1,45 @@
+package com.services.utility;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+import org.openqa.selenium.Keys;
+
+
+public class ZoomInAndZoomOut {
+	public WebDriver driver;
+  @Test
+  public void zoomOut() throws AWTException {
+	  
+	  System.setProperty("webdriver.gecko.driver", "/home/streamoid/geckodriver");
+	  driver = new FirefoxDriver();
+	  driver.get("https://www.peterengland.com/");
+//	  JavascriptExecutor js = (JavascriptExecutor) driver;
+//	  js.executeScript("document.body.style.zoom='0.33'");
+	  Robot robot = new Robot();
+	  for(int i=0; i<=4; i++){
+		 //  driver.findElement(By.tagName("html")).sendKeys(Keys.chord(Keys.CONTROL, Keys.SUBTRACT));
+		  robot.keyPress(KeyEvent.VK_CONTROL);
+		  robot.keyPress(KeyEvent.VK_MINUS);
+	  }
+  }
+  
+  public void zoomIn(WebDriver driver) throws AWTException {
+//	  JavascriptExecutor js = (JavascriptExecutor) driver;
+//	  js.executeScript("document.body.style.zoom='1'");
+	  
+	  Robot robot = new Robot();
+	  for(int i=0; i<=4; i++){
+		 //  driver.findElement(By.tagName("html")).sendKeys(Keys.chord(Keys.CONTROL, Keys.ADD));
+		  robot.keyPress(KeyEvent.VK_CONTROL);
+		  robot.keyPress(KeyEvent.VK_ADD);
+	  }
+  }
+  
+}

@@ -1,0 +1,24 @@
+package com.services.utility;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
+
+public class ZoomInAndZoomOut {
+  
+  public void zoomOut(WebDriver driver) {
+//	  JavascriptExecutor js = (JavascriptExecutor) driver;
+//	  js.executeScript("document.body.style.zoom='0.33'");
+	  
+	  for(int i=0; i<=4; i++){
+		   driver.findElement(By.tagName("html")).sendKeys(Keys.chord(Keys.CONTROL, Keys.SUBTRACT));
+	  }
+  }
+  
+  public void zoomIn(WebDriver driver) {
+	  JavascriptExecutor js = (JavascriptExecutor) driver;
+	  js.executeScript("document.body.style.zoom='1'");
+  }
+  
+}

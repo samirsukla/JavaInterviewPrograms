@@ -1,0 +1,9 @@
+package com.services.utility;
+
+import org.testng.annotations.Test;
+
+public class GetBrowserWindowWidth {
+  @Test
+  public void f() {
+  }
+}

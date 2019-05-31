@@ -1,0 +1,113 @@
+package com.streamoid.search;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import junit.framework.Assert;
+
+public class DBCleaner {
+	
+	public WebDriver driver;
+	String url = "http://tools.streamoid.com/dbcleaner2/DBCleaner.php";
+	
+	public void launchUrl() {
+		
+		System.setProperty("webdriver.chrome.driver", "/home/streamoid/Desktop/Samir_Streamoid/Selenium_Streamoid/chromedriver");
+		driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.get(url);
+	}
+	
+	public void loginAndSearch() {
+		
+		WebElement vendor_dropdown = driver.findElement(By.xpath("//label[text()='Vendor']/preceding-sibling::div/ul/li[2]/span"));
+		
+		WebElement submit_button = driver.findElement(By.xpath("//div/a[text()='Submit']"));
+		submit_button.click();
+				
+		
+	}
+	
+	public void selectCategory() {
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='Gender']")));
+		
+		WebElement select_gender = driver.findElement(By.xpath("//label[text()='Gender']/preceding-sibling::div/input"));
+		select_gender.click();
+		WebElement value_to_select = select_gender.findElement(By.xpath("//label[text()='Gender']/preceding-sibling::div/ul/li[2]/span"));
+		Actions act= new Actions(driver);
+		act.moveToElement(value_to_select).click().build().perform();
+		
+		WebElement sel_categ = driver.findElement(By.xpath("//label[text()='Category']/preceding-sibling::div/input"));
+		sel_categ.click();
+		WebElement value_categ = sel_categ.findElement(By.xpath("//label[text()='Category']/preceding-sibling::div/ul/li[12]/span"));
+		Actions action= new Actions(driver);
+		act.moveToElement(value_categ).click().build().perform();
+		
+		
+		WebElement select_image = driver.findElement(By.xpath("//img[@title=\"ONYLINKA  - Cardigan\"]"));
+		Actions act1 = new Actions(driver);
+		act1.moveToElement(select_image).doubleClick().build().perform();
+	}
+	
+	public void saveChangesAndNext() {
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(driver,10);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/blockquote[@id='description']")));
+			
+			WebElement val1 = driver.findElement(By.xpath("//a[@title='Above-waist']"));
+			if(!val1.isSelected()) {
+				
+				val1.click();
+			}
+			
+			WebElement save_changes = driver.findElement(By.xpath("//a[@id='saveForImage']"));
+			save_changes.click();
+			
+			String actual = driver.findElement(By.xpath("//div[@id='toast-container']/div")).getText();
+			Assert.assertEquals("Saved!", actual);
+			
+			driver.wait(5000);
+			
+			WebElement click_next = driver.findElement(By.xpath("//a[@id='nextImage']"));
+			click_next.click();
+			
+			driver.wait(5000);
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void tearDown() {
+		
+		driver.close();
+	}
+
+	public static void main(String[] args) {
+		
+		DBCleaner dc = new DBCleaner();
+		dc.launchUrl();
+        dc.loginAndSearch();
+        dc.selectCategory();
+        dc.saveChangesAndNext();
+        dc.tearDown();
+        
+	}
+	
+	
+
+}

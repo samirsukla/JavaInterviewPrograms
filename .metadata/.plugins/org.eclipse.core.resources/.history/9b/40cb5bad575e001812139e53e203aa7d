@@ -1,0 +1,18 @@
+package com.services.utility;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
+public class ZoomInAndZoomOut {
+  
+  public void zoomOut(WebDriver driver) {
+	  JavascriptExecutor js = (JavascriptExecutor) driver;
+	  js.executeScript("document.body.style.zoom='30%'");
+  }
+  
+  public void zoomIn(WebDriver driver) {
+	  JavascriptExecutor js = (JavascriptExecutor) driver;
+	  js.executeScript("document.body.style.zoom='100%'");
+  }
+  
+}

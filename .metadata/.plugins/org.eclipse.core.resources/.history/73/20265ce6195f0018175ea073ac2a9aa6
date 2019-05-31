@@ -1,0 +1,13 @@
+package com.services.test;   
+import java.util.*;  
+      
+    public class Test1  
+    {  
+     public static void main(String [] args){  
+    	 
+    	 Random r = new Random();
+    	 int randomNo = r.nextInt((10-1)+1)+1;
+    	 System.out.println(randomNo);
+          
+     }
+    }  

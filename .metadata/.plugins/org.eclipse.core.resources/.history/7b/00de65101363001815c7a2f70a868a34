@@ -1,0 +1,61 @@
+package com.services.test;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import junit.framework.Assert;
+
+public class UploadToDrive {
+	public WebDriver driver;
+	
+	@BeforeClass
+	public void setUp() {
+		System.setProperty("webdriver.chrome.driver", "/home/streamoid/chromedriver");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		
+		
+		
+	}
+  @Test
+  public void storeScreenShosToDrive() throws InterruptedException {
+	  driver.get("https://drive.google.com");
+	  
+	  
+	  driver.findElement(By.xpath("/html/body/section/div[2]/div/a")).click();
+	  
+	  Thread.sleep(2000);
+	  
+	  driver.findElement(By.xpath(".//*[@id='identifierId']")).sendKeys("testuser.streamoid@gmail.com");
+	  driver.findElement(By.xpath(".//*[@id='identifierNext']/div[2]")).click();
+	  Thread.sleep(2000);
+	  
+	  driver.findElement(By.xpath(".//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("Test123!");
+	  driver.findElement(By.xpath(".//*[@id='passwordNext']/content/span]")).click();
+	  Thread.sleep(7000);
+	  
+	  Assert.assertEquals("Login Successful", "My Drive - Google Drive", driver.getTitle());
+	  
+	  WebElement JS_SDK_Folder = driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[2]/div/div/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[1]/div/div/div/div/div[1]/div/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/div[4]"));
+	  
+//	  Actions act = new Actions(driver);
+//	  act.doubleClick(JS_SDK_Folder).build().perform();
+	  
+	 // ((JavascriptExecutor)driver).executeScript("arguments[0].dblclick();", JS_SDK_Folder);
+	  
+	  ((JavascriptExecutor)driver).executeScript("var evt = document.createEvent('MouseEvents');" + 
+	  "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + 
+			  "arguments[0].dispatchEvent(evt);",JS_SDK_Folder);
+	  
+  }
+}
