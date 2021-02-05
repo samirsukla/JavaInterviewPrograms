@@ -12,7 +12,7 @@ public class reverseString {
 		
 		String name = "Samir Kumar Sukla";
 		char[] input = name.toCharArray();
-		List<Character> trial1 = new ArrayList<>();
+		List<Character> trial1 = new ArrayList<Character>();
 		for(char c : input)
 		{
 			trial1.add(c);

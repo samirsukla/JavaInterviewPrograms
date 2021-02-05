@@ -14,7 +14,7 @@ public class setConcept {
 			ts.add("Ashish");
 			ts.add("Raj");
 			ts.add("Dhiru");
-			//ts.add("Samir");
+			ts.add("Samir");
 			
 			System.out.println(ts);
 		} catch (Exception e) {

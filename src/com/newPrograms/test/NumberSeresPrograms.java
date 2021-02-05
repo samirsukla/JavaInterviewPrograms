@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class NumberSeresPrograms {
 
-	
+	@Test
 	public void starTriangle() {
 		
 		for(int i=1;i<=5;i++) {
@@ -53,7 +53,7 @@ public class NumberSeresPrograms {
 		System.out.println(finalWord);
 	}
 	
-	@Test
+	
 	public void findMaxCharacter() {
 		String str = "";
 		System.out.println("Enter the String");

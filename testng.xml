@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="testNG.gmailLogin"/>
-      <class name="testNG.priorityCheck"/>
-      <class name="testNG.alertHandle"/>
+      <class name="testNG.sysDate"/>
+      <class name="testNG.screenShot"/>
       <class name="testNG.myDropdown"/>
-      <class name="testNG.getElementSize"/>
       <class name="testNG.manageWindowHandle"/>
-      <class name="testNG.dataProviderExample"/>
       <class name="testNG.SkipExample"/>
       <class name="testNG.scrollNcheck"/>
-      <class name="com.mytest.selenium.webdriver.sample.Test"/>
-      <class name="testNG.parameterTest"/>
-      <class name="testNG.screenShot"/>
-      <class name="testNG.sysDate"/>
-      <class name="testNG.windowMinimise"/>
+      <class name="testNG.dataProviderExample"/>
+      <class name="testNG.getElementSize"/>
       <class name="testNG.dataDrivenTest"/>
+      <class name="com.newPrograms.test.NumberSeresPrograms"/>
+      <class name="testNG.priorityCheck"/>
+      <class name="testNG.windowMinimise"/>
+      <class name="testNG.gmailLogin"/>
+      <class name="testNG.alertHandle"/>
+      <class name="testNG.parameterTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
